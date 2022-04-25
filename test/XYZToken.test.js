@@ -4,15 +4,15 @@ const { BigNumber } = require('bignumber.js')
 
 use(require('chai-bignumber')())
 
-describe('XYZToken', function () {
+describe('FETAToken', function () {
     let token
 
-    const tokenName = 'XYZ Governance Token'
-    const tokenSymbol = 'XYZ'
-    const mintTokens = new BigNumber(1000000000 * Math.pow(10, 18));
+    const tokenName = 'FETA Governance Token'
+    const tokenSymbol = 'FETA'
+    const mintTokens = new BigNumber(100000000 * Math.pow(10, 18));
 
     beforeEach(async function () {
-        const Token = await ethers.getContractFactory('XYZToken')
+        const Token = await ethers.getContractFactory('FETAToken')
         token = await Token.deploy()
         await token.deployed()
     })
@@ -29,7 +29,7 @@ describe('XYZToken', function () {
         expect(await token.symbol()).to.equal(tokenSymbol)
     })
 
-    it('Mints 1BN tokens', async function () {
+    it('Mints 100Mil tokens', async function () {
         const actual = new BigNumber((await token.totalSupply()).toString())
 
         expect(actual).to.be.bignumber.equal(mintTokens)
